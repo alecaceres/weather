@@ -18,10 +18,8 @@ function App() {
   const { city, country } = search;
 
   useEffect( () => {
-    console.log("using effect")
     const queryAPI = async () => {
       if (query){
-        console.log("querying")
         const APIkey = "aff4569e4c8bdfbaad815ed184006aa6";
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appId=${APIkey}`
         const resp = await fetch(url);
@@ -32,9 +30,8 @@ function App() {
     }
     queryAPI();
     setQuery(false);
-    console.log("done")
-  },
-  [query])
+    // eslint-disable-next-line
+  }, [query])
 
   const component = error?<Error message="There are no results"/>:<Weather result={result}/>
   return (
