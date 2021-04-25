@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Error from "./Error";
 
 const Form = ({search, setSearch, setQuery}) => {
 
@@ -34,7 +35,7 @@ const Form = ({search, setSearch, setQuery}) => {
         <form
             onSubmit={handleSubmit}
         >
-            { error && <p className="red darken-4 error">All fields are required</p>}
+            { error && <Error message="All fields are required"/>}
             <div className="input-field col s12">
                 <input
                     type="text"
@@ -64,11 +65,12 @@ const Form = ({search, setSearch, setQuery}) => {
                     <label htmlFor="country">Country: </label>
                 </div>
             </div>
+            
             <div className="input-field col s12">
                 <input
                     type="submit"
                     value="Ask weather"
-                    className="waves-effect waves-light btn-large btn-block yellow accent-4"
+                    className="waves-effect waves-light btn-large yellow accent-4 btn-block"
                 />
             </div>
         </form>

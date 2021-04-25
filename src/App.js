@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react";
-import Header from "./components/Header";
+import Error from "./components/Error";
 import Form from "./components/Form";
+import Header from "./components/Header";
 import Weather from "./components/Weather";
 
 function App() {
@@ -12,24 +13,30 @@ function App() {
   
   const [query, setQuery] = useState(false);
   const [result, setResult] = useState({});
+  const [error, setError] = useState(false);
   
   const { city, country } = search;
 
   useEffect( () => {
+    console.log("using effect")
     const queryAPI = async () => {
       if (query){
+        console.log("querying")
         const APIkey = "aff4569e4c8bdfbaad815ed184006aa6";
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appId=${APIkey}`
         const resp = await fetch(url);
         const result = await resp.json();
         setResult(result);
+        setError(result.cod === "404");
       }
     }
     queryAPI();
     setQuery(false);
+    console.log("done")
   },
   [query])
 
+  const component = error?<Error message="There are no results"/>:<Weather result={result}/>
   return (
     <Fragment>
       <Header
@@ -46,9 +53,7 @@ function App() {
                 />
             </div>
             <div className="col m6 s12">
-              <Weather
-                result={result}
-              />
+              {component}
             </div>
           </div>
         </div>
