@@ -54,13 +54,13 @@ const Form = ({search, setSearch, setQuery}) => {
                         onChange={handleChange}
                     >
                         <option value="">-- Select a country --</option>
-                        <option value="US">Estados Unidos</option>
-                        <option value="MX">México</option>
+                        <option value="US">United States</option>
+                        <option value="MX">Mexico</option>
                         <option value="AR">Argentina</option>
                         <option value="CO">Colombia</option>
                         <option value="CR">Costa Rica</option>
-                        <option value="ES">España</option>
-                        <option value="PE">Perú</option>
+                        <option value="ES">Spain</option>
+                        <option value="PE">Peru</option>
                     </select>
                     <label htmlFor="country">Country: </label>
                 </div>
